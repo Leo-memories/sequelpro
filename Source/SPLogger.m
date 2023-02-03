@@ -142,41 +142,41 @@ int _isSPLeaksLog(const struct direct *entry);
 		}
 		
 		// If required remove old logs
-		if ([self removeOldLeakDumpsOnTermination]) {
-			
-			int cnt, cnt2, i;
-			struct direct **files;
-			
-			cnt  = scandir("/tmp", &files, _isSPLeaksLog, NULL);
-			
-			char fpath[32], fpath2[32], fpath3[64];
-			
-			for (i = 0; i < cnt; i++)
-			{
-				snprintf(fpath, sizeof(fpath), "/tmp/%s", files[i]->d_name);
-				
-				if (remove(fpath) != 0) {
-					printf("Unable to remove Sequel Pro leaks log '%s'\n", files[i]->d_name);
-				}
-			}
-			
-			free(&files);
-			
-			if (hdir) {
-				snprintf(fpath2, sizeof(fpath2), "%s/Desktop", pw->pw_dir);
-				
-				cnt2 = scandir(fpath2, &files, _isSPLeaksLog, NULL);
-				
-				for (i = 0; i < cnt2; i++)
-				{
-					snprintf(fpath3, sizeof(fpath3), "%s/%s", fpath2, files[i]->d_name);
-					
-					if (remove(fpath3) != 0) {
-						printf("Unable to remove Sequel Pro leaks log '%s'\n", files[i]->d_name);
-					}
-				}
-			}
-		}
+//		if ([self removeOldLeakDumpsOnTermination]) {
+//
+//			int cnt, cnt2, i;
+//			struct direct **files;
+//
+//			cnt  = scandir("/tmp", &files, _isSPLeaksLog, NULL);
+//
+//			char fpath[32], fpath2[32], fpath3[64];
+//
+//			for (i = 0; i < cnt; i++)
+//			{
+//				snprintf(fpath, sizeof(fpath), "/tmp/%s", files[i]->d_name);
+//
+//				if (remove(fpath) != 0) {
+//					printf("Unable to remove Sequel Pro leaks log '%s'\n", files[i]->d_name);
+//				}
+//			}
+//
+//			free(&files);
+//
+//			if (hdir) {
+//				snprintf(fpath2, sizeof(fpath2), "%s/Desktop", pw->pw_dir);
+//
+//				cnt2 = scandir(fpath2, &files, _isSPLeaksLog, NULL);
+//
+//				for (i = 0; i < cnt2; i++)
+//				{
+//					snprintf(fpath3, sizeof(fpath3), "%s/%s", fpath2, files[i]->d_name);
+//
+//					if (remove(fpath3) != 0) {
+//						printf("Unable to remove Sequel Pro leaks log '%s'\n", files[i]->d_name);
+//					}
+//				}
+//			}
+//		}
 	
 		size_t len;
 		FILE *fp, *fp2;
@@ -251,9 +251,9 @@ int _isSPLeaksLog(const struct direct *entry);
 	[logFileHandle writeData:[[NSString stringWithFormat:@"Launched at %@\n\n", [[NSDate date] description]] dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
-int _isSPLeaksLog(const struct direct *entry)
-{
-	return (strstr(entry->d_name, "sp.leaks") != NULL);
-}
+//int _isSPLeaksLog(const struct direct *entry)
+//{
+//	return (strstr(entry->d_name, "sp.leaks") != NULL);
+//}
 
 @end
